@@ -1,0 +1,128 @@
+{
+    "value": "CEO",
+    "id": 1,
+    "description" : "The Chief Executive Officer is responsible for the overall strategy and direction of the company.",
+    "children": [
+        {
+            "value": "CTO",
+            "id":2,
+            "description" : "The Chief Technology Officer is responsible for the technological vision and direction of the company.",
+            "children": [
+                {
+                    "value": "Project Manager",
+                    "id":6,
+                    "description" : "The Project Manager is responsible for planning, organizing, and overseeing the completion of specific projects within the software development cycle.",
+                    "children": [
+                        {
+                            "value": "Product Owner",
+                            "id": 7,
+                            "description" : "The Product Owner is responsible for defining and prioritizing the features and requirements of the product being developed.",
+                            "children": [
+                                {
+                                    "value": "Tech Lead",
+                                    "id": 8,
+                                    "description" : "The Tech Lead is responsible for leading the technical team and making technical decisions related to the project.",
+                                    "children": [
+                                        {
+                                            "value": "Frontend Developer",
+                                            "id":11,
+                                            "description" : "The Frontend Developer is responsible for implementing the user interface and user experience of the product.",
+                                            "children": []
+                                        },
+                                        {
+                                            "value": "Backend Developer",
+                                            "id":12,
+                                            "description" : "The Backend Developer is responsible for implementing the server-side logic and database interactions of the product.",
+                                            "children": []
+                                        },
+                                        {
+                                            "value": "DevOps Engineer",
+                                            "id":13,
+                                            "description" : "The DevOps Engineer is responsible for managing the infrastructure and deployment processes of the product.",
+                                            "children": []
+                                        }
+                                    ]
+                                },
+                                {
+                                    "value": "QA Engineer",
+                                    "id": 9,
+                                    "description" : "The QA Engineer is responsible for testing and ensuring the quality of the product.",
+                                    "children": []
+                                },
+                                {
+                                    "value": "Scrum Master",
+                                    "id":10,
+                                    "description" : "The Scrum Master is responsible for facilitating the Scrum process and ensuring that the team follows Agile principles.",
+                                    "children": []
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "value": "CFO",
+            "id": 3,
+            "description" : "The Chief Financial Officer is responsible for managing the financial risks and financial planning of the company.",
+            "children": [
+                {
+                    "value": "Chef Accountant",
+                    "id":14,
+                    "description" : "The Chef Accountant is responsible for managing the accounting and financial reporting of the company.",
+                    "children": [
+                        {
+                            "value": "Financial Analyst",
+                            "id":16,
+                            "description" : "The Financial Analyst is responsible for analyzing financial data and making financial recommendations to management.",
+                            "children": []
+                        },
+                        {
+                            "value": "Account and Payable",
+                            "id":17,
+                            "description" : "The Account and Payable role is responsible for managing accounts payable and other financial obligations of the company.",
+                            "children": []
+                        }
+                    ]
+                },
+                {
+                    "value": "Internal Audit",
+                    "id":15,
+                    "description" : "The Internal Audit role is responsible for reviewing and evaluating the company's financial and operational processes to ensure compliance with regulations and internal policies.",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "value": "COO",
+            "id": 4,
+            "description" : "The Chief Operating Officer is responsible for overseeing day-to-day operations and ensuring that business operations are efficient and effective.",
+            "children": [
+                {
+                    "value": "Product Manager",
+                    "id":18,
+                    "description" : "The Product Manager is responsible for managing the development, marketing, and overall success of a product.",
+                    "children": []
+                },
+                {
+                    "value": "Operation Manager",
+                    "id":19,
+                    "description" : "The Operation Manager is responsible for managing operational processes to ensure that they are efficient, effective, and meet customer needs.",
+                    "children": []
+                },
+                {
+                    "value": "Customer Relation",
+                    "id":20,
+                    "description" : "The Customer Relation role is responsible for managing relationships with customers, addressing customer concerns, and ensuring customer satisfaction.",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "value": "HR",
+            "id": 5,
+            "description" : "The Human Resources role is responsible for managing employee relations, recruitment, training, and other HR functions within the company.",
+            "children": []
+        }
+    ]
+}
