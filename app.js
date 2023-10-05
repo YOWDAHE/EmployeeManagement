@@ -6,5 +6,5 @@ const cors = require('cors');
 const app = express();
 
 app.listen('8000', (req, res) => {
-    console.log('listeninggggg');
+    console.log('listening');
 })

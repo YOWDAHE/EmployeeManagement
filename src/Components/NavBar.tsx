@@ -109,7 +109,7 @@ function NavBar() {
             spacing={0}
             className={classes.hiddenMobile}
           >
-            <NavLink to={"/tree"} className={classes.link}>
+            <NavLink to={"/role/add"} className={classes.link}>
               Home
             </NavLink>
             <NavLink to={"/employee/All"} className={classes.link}>

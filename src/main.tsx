@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import Demo from "./LoginPage.tsx";
-import TreePage from "./TreePage.tsx";
+// import TreePage from "./TreePage.tsx";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import RegisterForm from "./RegisterForm.tsx";
 import RegiterRole from "./RegiterRole.tsx";
@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
 
       <BrowserRouter>
         <Routes>
-          <Route path="/tree" element={<TreePage />} />
+          {/* <Route path="/tree" element={<TreePage />} /> */}
           <Route path="/role">
             <Route path="/role/register" element={<RegiterRole />} />
             <Route path="/role/add" element={<AddRole />} />

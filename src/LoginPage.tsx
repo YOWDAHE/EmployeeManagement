@@ -52,7 +52,7 @@ function LoginPage() {
   const { errors } = formState;
 
   const formSubmit = (data: object) => {
-    navigate('/tree');
+    navigate('/role/add');
   };
 
   const [passwordErr, setPasswordErr] = useState<boolean>(false);
