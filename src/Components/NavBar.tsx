@@ -115,9 +115,9 @@ function NavBar() {
             <NavLink to={"/employee/All"} className={classes.link}>
               Employees
             </NavLink>
-            <NavLink to={"/role/add"} className={classes.link}>
+            {/* <NavLink to={"/role/add"} className={classes.link}>
               Roles
-            </NavLink>
+            </NavLink> */}
           </Group>
 
           <Group className={classes.hiddenMobile}>
