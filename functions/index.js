@@ -179,7 +179,7 @@ app.get('/getTree', (req, res) => {
                 status: 'success',
                 data: tree
             })
-            
+
         } catch (err) {
             console.log(err);
             res.status(500).send({ status: "fail", msg: "error" })
@@ -296,7 +296,7 @@ app.delete('/deleteEmployee/:id', (req, res) => {
 
             return res.status(200).send({
                 status: 'success',
-                data : {
+                data: {
                     id: req.params.id
                 }
             })
@@ -327,6 +327,8 @@ app.get('/getEmployees', (req, res) => {
                         lastName: doc.data().lastName,
                         phone: doc.data().phone,
                         role: doc.data().role,
+                        lastLog: doc.data().lastLog,
+                        active: doc.data().active
                     }
 
                     responce.push(selectedItem);
@@ -362,6 +364,39 @@ app.post('/updateEmployee/:id', (req, res) => {
             res.status(500).send({ status: "fail", msg: "error" })
         }
     })();
+})
+
+app.get('/getFeedback/', (req, res) => {
+    (async () => {
+        try {
+            let query = await db.collection('feedback');
+            let responce = [];
+
+            await query.get().then((data) => {
+                console.log(data);
+                let docs = data.docs;
+
+                docs.map((doc) => {
+                    const selectedItem = {
+                        name: doc.data().name,
+                        text: doc.data().text,
+                    }
+
+                    responce.push(selectedItem);
+                })
+
+                return responce;
+            })
+
+            return res.status(200).send({
+                status: 'success',
+                data: responce
+            })
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ status: "fail", data: null })
+        }
+    })()
 })
 
 // exports the api to the firebase cloud functions

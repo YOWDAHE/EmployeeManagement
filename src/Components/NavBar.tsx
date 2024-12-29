@@ -22,7 +22,7 @@ import {
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleDown } from "@fortawesome/free-regular-svg-icons";
+import { faArrowAltCircleDown, faBell } from "@fortawesome/free-regular-svg-icons";
 import { NavLink } from "react-router-dom";
 
 const useStyles = createStyles((theme) => ({
@@ -101,79 +101,79 @@ function NavBar() {
   const { classes, theme } = useStyles();
 
   return (
-    <Box className="sticky top-0 w-full z-10">
-      <Header height={60} px="md">
-        <Group position="apart" sx={{ height: "100%" }}>
-          <Group
-            sx={{ height: "100%" }}
-            spacing={0}
-            className={classes.hiddenMobile}
-          >
-            <NavLink to={"/role/add"} className={classes.link}>
-              Home
-            </NavLink>
-            <NavLink to={"/employee/All"} className={classes.link}>
-              Employees
-            </NavLink>
-            {/* <NavLink to={"/role/add"} className={classes.link}>
-              Roles
-            </NavLink> */}
-          </Group>
+			<Box className="sticky top-0 w-full z-10">
+				<Header height={60} px="md">
+					<Group position="apart" sx={{ height: "100%" }}>
+						<Group
+							sx={{ height: "100%" }}
+							spacing={0}
+							className={classes.hiddenMobile}
+						>
+							<NavLink to={"/role/add"} className={classes.link}>
+								Home
+							</NavLink>
+							<NavLink to={"/employee/All"} className={classes.link}>
+								Employees
+							</NavLink>
+						</Group>
 
-          <Group className={classes.hiddenMobile}>
-            {/* <Button variant="default">Log in</Button> */}
-            <NavLink to={"/"} className={classes.link}>
-              <Button variant="default">Log in</Button>
-            </NavLink>
-            {/* <Button>Sign up</Button> */}
-          </Group>
+						<Group className={classes.hiddenMobile}>
+							{/* <Button variant="default">Log in</Button> */}
+							<NavLink to={"/feedback"} className={classes.link}>
+								<FontAwesomeIcon icon={faBell} size="lg" />
+							</NavLink>
+							<NavLink to={"/"} className={classes.link}>
+								<Button variant="default">Log in</Button>
+							</NavLink>
+							{/* <Button>Sign up</Button> */}
+						</Group>
 
-          <Burger
-            opened={drawerOpened}
-            onClick={toggleDrawer}
-            className={classes.hiddenDesktop}
-          />
-        </Group>
-      </Header>
+						<Burger
+							opened={drawerOpened}
+							onClick={toggleDrawer}
+							className={classes.hiddenDesktop}
+						/>
+					</Group>
+				</Header>
 
-      <Drawer
-        opened={drawerOpened}
-        onClose={closeDrawer}
-        size="100%"
-        padding="md"
-        title="Navigation"
-        className={classes.hiddenDesktop}
-        zIndex={1000000}
-      >
-        <ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
+				<Drawer
+					opened={drawerOpened}
+					onClose={closeDrawer}
+					size="100%"
+					padding="md"
+					title="Navigation"
+					className={classes.hiddenDesktop}
+					zIndex={1000000}
+				>
+					<ScrollArea h={`calc(100vh - ${rem(60)})`} mx="-md">
+						<Divider
+							my="sm"
+							color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
+						/>
 
-          <NavLink to={"/tree"} className={classes.link}>
-            Home
-          </NavLink>
-          <NavLink to={"/tree"} className={classes.link}>
-            Home
-          </NavLink>
-          <NavLink to={"/tree"} className={classes.link}>
-            Home
-          </NavLink>
+						<NavLink to={"/tree"} className={classes.link}>
+							Home
+						</NavLink>
+						<NavLink to={"/tree"} className={classes.link}>
+							Home
+						</NavLink>
+						<NavLink to={"/tree"} className={classes.link}>
+							Home
+						</NavLink>
 
-          <Divider
-            my="sm"
-            color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
-          />
+						<Divider
+							my="sm"
+							color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
+						/>
 
-          <Group position="center" grow pb="xl" px="md">
-            <Button variant="default">Log in</Button>
-            {/* <Button>Sign up</Button> */}
-          </Group>
-        </ScrollArea>
-      </Drawer>
-    </Box>
-  );
+						<Group position="center" grow pb="xl" px="md">
+							<Button variant="default">Log in</Button>
+							{/* <Button>Sign up</Button> */}
+						</Group>
+					</ScrollArea>
+				</Drawer>
+			</Box>
+		);
 }
 
 export default NavBar;

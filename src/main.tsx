@@ -14,6 +14,7 @@ import { Provider } from "react-redux";
 import { Store } from "./Store.ts";
 import { MantineProvider } from "@mantine/core";
 import LoginPage from "./LoginPage.tsx";
+import Feedback from "./Feedback.tsx";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <MantineProvider theme={{ colorScheme: "light" }}>
@@ -34,6 +35,7 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
             />
             <Route path="/employee/All" element={<AllEmployees />} />
           </Route>
+          <Route path="/feedback" element={<Feedback/>} />
           <Route path="/" element={<LoginPage/>} />
         </Routes>
       </BrowserRouter>
