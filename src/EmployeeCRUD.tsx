@@ -89,7 +89,7 @@ function EmployeeCRUD({
         </div>
       )}
     </>
-    // <div className="w-full bg-blue-200">
+    // <div className="w-full bg-blue-200"> wertdgv
     //   {/* <div className="flex w-full gap-20 justify-center text-gray-700 border border-b-gray-200 mb-2">
     //     <p className="w-[70px]">{firstName}</p>
     //     <p className="w-[70px]">{lastName}</p>
