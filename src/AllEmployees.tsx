@@ -1,8 +1,8 @@
 import "./index.css";
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
+import { NavLink, useParams } from "react-router-dom";
 import EmployeeCRUD from "./EmployeeCRUD";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import {
   Input,
   Loader,
@@ -17,6 +17,7 @@ import {
   faUser,
 } from "@fortawesome/free-regular-svg-icons";
 import NavBar from "./Components/NavBar";
+import EmpDisplayTable from "./Components/EmpDisplayTable";
 
 interface employee {
   email: string;
@@ -31,6 +32,7 @@ interface employee {
 
 function AllEmployees() {
   const [employees, setEmployees] = useState<employee[]>();
+  const [roles, setRoles] = useState();
   const [loading, setLoading] = useState(true);
   const [refresh, setRefresh] = useState<boolean>(true);
   const [search, setSearch] = useState("");
@@ -44,7 +46,11 @@ function AllEmployees() {
       const response = await axios.get(
         "http://127.0.0.1:5001/employee-managment-a84ff/us-central1/app/getEmployees"
       );
+      const response2 = await axios.get(
+        "http://127.0.0.1:5001/employee-managment-a84ff/us-central1/app/getRoles"
+      );
       setEmployees(response.data.data);
+      setRoles(response2.data.data);
       setLoading(false);
     })();
   }, [refresh]);
@@ -103,8 +109,8 @@ function AllEmployees() {
           >
             <thead>
               <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>FirstName</th>
+                <th>LastName</th>
                 <th>Job title</th>
                 <th>Email</th>
                 <th>Phone</th>
@@ -128,6 +134,7 @@ function AllEmployees() {
                         id={el.id}
                         role={el.role}
                         lastLog={el.lastLog}
+                        AllRoles={roles}
                         employees={employees}
                         el={el}
                         refresh={setRefresh}
@@ -150,6 +157,7 @@ function AllEmployees() {
                         id={el.id}
                         role={el.role}
                         lastLog={el.lastLog}
+                        AllRoles={roles}
                         employees={employees}
                         el={el}
                         refresh={setRefresh}
