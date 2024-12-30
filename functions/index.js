@@ -27,6 +27,43 @@ app.get('/', (req, res) => {
 })
 
 
+// get all the data
+app.get(('/api/get'), (req, res) => {
+    (async () => {
+        try {
+            let query = await db.collection('userDetails');
+            let responce = [];
+
+            await query.get().then((data) => {
+                let docs = data.docs;
+
+                docs.map((doc) => {
+                    const selectedItem = {
+                        name: doc.data().name,
+                        mobile: doc.data().mobile,
+                        address: doc.data().address
+                    }
+
+                    responce.push(selectedItem);
+                })
+
+                return responce;
+            })
+
+            return res.status(200).send({
+                status: 'success',
+                data: responce
+            })
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ status: "fail", msg: "error" })
+        }
+    })();
+});
+
+
+
 //create
 app.post('/api/create', (req, res) => {
     (async () => {
@@ -71,40 +108,7 @@ app.get(('/api/get/:id'), (req, res) => {
 });
 
 
-// get all the data
-app.get(('/api/get'), (req, res) => {
-    (async () => {
-        try {
-            let query = await db.collection('userDetails');
-            let responce = [];
 
-            await query.get().then((data) => {
-                let docs = data.docs;
-
-                docs.map((doc) => {
-                    const selectedItem = {
-                        name: doc.data().name,
-                        mobile: doc.data().mobile,
-                        address: doc.data().address
-                    }
-
-                    responce.push(selectedItem);
-                })
-
-                return responce;
-            })
-
-            return res.status(200).send({
-                status: 'success',
-                data: responce
-            })
-
-        } catch (err) {
-            console.log(err);
-            res.status(500).send({ status: "fail", msg: "error" })
-        }
-    })();
-});
 
 
 //update specific data
@@ -128,6 +132,27 @@ app.patch('/api/update/:id', (req, res) => {
         }
     })();
 });
+
+
+//update the roles table
+app.post('/makeRoles', (req, res) => {
+    (async () => {
+        try {
+            const value = flattenTree(req.body);
+            // await db.collection('Tree').doc(`2`).update(null);
+            await db.collection('Tree').doc(`2`).update({ ...value });
+
+            return res.status(200).send({
+                status: 'success',
+                data: tree
+            })
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ status: "fail", msg: "error" })
+        }
+    })();
+})
 
 
 //delete
@@ -198,25 +223,7 @@ function flattenTree(tree, parentID = null) {
 }
 
 
-//update the roles table
-app.post('/makeRoles', (req, res) => {
-    (async () => {
-        try {
-            const value = flattenTree(req.body);
-            // await db.collection('Tree').doc(`2`).update(null);
-            await db.collection('Tree').doc(`2`).update({ ...value });
 
-            return res.status(200).send({
-                status: 'success',
-                data: tree
-            })
-
-        } catch (err) {
-            console.log(err);
-            res.status(500).send({ status: "fail", msg: "error" })
-        }
-    })();
-})
 
 
 //delete single role
@@ -239,6 +246,28 @@ app.delete('/deleteRole/:id', (req, res) => {
         }
     })();
 })
+
+//delete Employee
+app.delete('/deleteEmployee/:id', (req, res) => {
+    (async () => {
+        try {
+            console.log(req.params.id);
+            await db.collection('employees').doc(req.params.id).delete();
+
+            return res.status(200).send({
+                status: 'success',
+                data: {
+                    id: req.params.id
+                }
+            })
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ status: "fail", msg: "error" })
+        }
+    })();
+})
+
 
 //get the roles table
 app.get('/getRoles', (req, res) => {
@@ -287,26 +316,7 @@ app.post('/addEmployee', (req, res) => {
 })
 
 
-//delete Employee
-app.delete('/deleteEmployee/:id', (req, res) => {
-    (async () => {
-        try {
-            console.log(req.params.id);
-            await db.collection('employees').doc(req.params.id).delete();
 
-            return res.status(200).send({
-                status: 'success',
-                data: {
-                    id: req.params.id
-                }
-            })
-
-        } catch (err) {
-            console.log(err);
-            res.status(500).send({ status: "fail", msg: "error" })
-        }
-    })();
-})
 
 
 //get employee's
@@ -348,23 +358,7 @@ app.get('/getEmployees', (req, res) => {
     })()
 });
 
-//update employee
-app.post('/updateEmployee/:id', (req, res) => {
-    (async () => {
-        try {
-            const emp = await db.collection('employees').doc(req.params.id).update(req.body);
 
-            return res.status(200).send({
-                status: 'success',
-                data: emp
-            })
-
-        } catch (err) {
-            console.log(err);
-            res.status(500).send({ status: "fail", msg: "error" })
-        }
-    })();
-})
 
 app.get('/getFeedback/', (req, res) => {
     (async () => {
@@ -398,6 +392,25 @@ app.get('/getFeedback/', (req, res) => {
         }
     })()
 })
+
+//update employee
+app.post('/updateEmployee/:id', (req, res) => {
+    (async () => {
+        try {
+            const emp = await db.collection('employees').doc(req.params.id).update(req.body);
+
+            return res.status(200).send({
+                status: 'success',
+                data: emp
+            })
+
+        } catch (err) {
+            console.log(err);
+            res.status(500).send({ status: "fail", msg: "error" })
+        }
+    })();
+})
+
 
 // exports the api to the firebase cloud functions
 exports.app = functions.https.onRequest(app);
